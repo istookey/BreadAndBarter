@@ -1,0 +1,79 @@
+{
+
+  "project_info": {
+
+    "project_number": "55148979079",
+
+    "firebase_url": "https://bread-and-barter.firebaseio.com",
+
+    "project_id": "bread-and-barter",
+
+    "storage_bucket": "bread-and-barter.appspot.com"
+
+  },
+
+  "client": [
+
+    {
+
+      "client_info": {
+
+        "mobilesdk_app_id": "1:55148979079:android:99484900368411227ba922",
+
+        "android_client_info": {
+
+          "package_name": "com.izzy.Bread_and_Barter"
+
+        }
+
+      },
+
+      "oauth_client": [
+
+        {
+
+          "client_id": "55148979079-51pa50epaipj1h3cgq62ivc37jno8v9r.apps.googleusercontent.com",
+
+          "client_type": 3
+
+        }
+
+      ],
+
+      "api_key": [
+
+        {
+
+          "current_key": "AIzaSyDDdz5BAQ6bNBXm9OV8xfHDnz_JQ8X7oVQ"
+
+        }
+
+      ],
+
+      "services": {
+
+        "appinvite_service": {
+
+          "other_platform_oauth_client": [
+
+            {
+
+              "client_id": "55148979079-51pa50epaipj1h3cgq62ivc37jno8v9r.apps.googleusercontent.com",
+
+              "client_type": 3
+
+            }
+
+          ]
+
+        }
+
+      }
+
+    }
+
+  ],
+
+  "configuration_version": "1"
+
+}
