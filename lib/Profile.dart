@@ -8,9 +8,25 @@ class ProfileState extends State<Profile> {
   Widget build(BuildContext context){
     return ConstrainedBox(
       constraints: const BoxConstraints.expand(),
-      child: Container(
-        child: new Text("Testing"),
+      child: Column(
+        children: <Widget>[
+        Container(
+        child: new Text(
+          'FirstName LastName',
+          textAlign: TextAlign.center,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),
+        ),
       ),
+          Container(
+            child: new Text(
+              'userID',
+              textAlign: TextAlign.center,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),
+            ),
+          ),
+      ])
     );
   }
 }
