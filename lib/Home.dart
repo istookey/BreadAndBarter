@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'PlaceholderWidget.dart';
 
+import 'package:Bread_and_Barter/Profile.dart';
+
 
 class Home extends StatefulWidget {
   @override
@@ -14,7 +16,7 @@ class _HomeState extends State<Home> {
   final List<Widget>_children = [
     PlaceholderWidget(Colors.yellow), //Meet up
     PlaceholderWidget(Colors.red), //Food nearby
-    PlaceholderWidget(Colors.white) //Profile
+    Profile(), //Profile
   ];
   @override
   Widget build(BuildContext context) {
