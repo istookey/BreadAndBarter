@@ -14,6 +14,10 @@ class Profile extends StatefulWidget {
   State createState() => ProfileState();
 }
 class ProfileState extends State<Profile> {
+  var firstName = "";
+  var lastName = "";
+  var UID = "";
+  var refreshCounter = 0;
 
   var client = http.Client();
   Future<Null> getUserData(var UID) async {
@@ -21,7 +25,9 @@ class ProfileState extends State<Profile> {
     try{
       var response = await client.get(url);
 
-      MyAppState().UID = UID;
+      await new Future.delayed(Duration(milliseconds: 20));
+
+      this.UID = UID;
 
       if (response.statusCode == 200) {
         var jsonResponse = convert.jsonDecode(response.body);
@@ -37,12 +43,20 @@ class ProfileState extends State<Profile> {
           }
         });
       }
+      setState(() {});
+
     }catch (error){
 
     }
   }
 
   Widget build(BuildContext context){
+    if (refreshCounter == 1) {
+      refreshCounter = 0;
+    } else {
+      getUserData("UID");
+      refreshCounter += 1;
+    }
     return ConstrainedBox(
       constraints: const BoxConstraints.expand(),
       child: Column(
@@ -80,11 +94,7 @@ class ProfileState extends State<Profile> {
                   disabledTextColor: Colors.black,
                   padding: EdgeInsets.all(8.0),
                   splashColor: Colors.blueAccent,
-                  onPressed: () async {
-                    await getUserData("UID");
-
-                    setState(() {});
-                  },
+                  onPressed: () {},
                   child: Text(
                     "Log Out",
                     style: TextStyle(fontSize: 20.0),
