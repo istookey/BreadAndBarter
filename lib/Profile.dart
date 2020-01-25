@@ -109,6 +109,7 @@ class ProfileState extends State<Profile> {
               labelText: 'Image URL',
             ),
              onSubmitted: (String value) async {
+               var imageUrl = value;
              await showDialog<void>(
                 context: context,
                 builder: (BuildContext context) {
@@ -136,6 +137,7 @@ class ProfileState extends State<Profile> {
                 labelText: 'Food Name',
               ),
               onSubmitted: (String value) async {
+                var foodName = value;
                 await showDialog<void>(
                   context: context,
                   builder: (BuildContext context) {
@@ -163,6 +165,7 @@ class ProfileState extends State<Profile> {
                 labelText: 'Description',
               ),
               onSubmitted: (String value) async {
+                var description = value;
                 await showDialog<void>(
                   context: context,
                   builder: (BuildContext context) {
@@ -182,7 +185,24 @@ class ProfileState extends State<Profile> {
                 );
               },
             ),
-          )
+          ),
+          Container(
+              child: (
+                  FlatButton(
+                    color: Colors.orangeAccent,
+                    textColor: Colors.white,
+                    disabledColor: Colors.grey,
+                    disabledTextColor: Colors.black,
+                    padding: EdgeInsets.all(8.0),
+                    splashColor: Colors.blueAccent,
+                    onPressed: () {},
+                    child: Text(
+                      "Add Post",
+                      style: TextStyle(fontSize: 20.0),
+                    ),
+                  )
+              )
+          ),
       ])
     );
   }
