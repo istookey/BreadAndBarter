@@ -32,7 +32,7 @@ class MeetupState extends State<Meetup> {
             Column (
               children: <Widget>[
                 Container (
-                  child: new Image(image: null),
+                  child: new Image.network("i.imgur.com/lxMABS0.jpg", fit: BoxFit.fitWidth),
                 ),
                 Container (
                   child: new Text(
