@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'globals.dart' as globals;
 
 var UID = "";
+var description = "";
 
 class Profile extends StatefulWidget {
 
@@ -101,6 +102,58 @@ class ProfileState extends State<Profile> {
                   ),
                 )
     )
+          ),
+          Container (
+          child: TextField(
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Image URL',
+            ),
+             onSubmitted: (String value) async {
+               var imageUrl = value;
+            },
+          ),
+    ),
+          Container (
+            child: TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Food Name',
+              ),
+              onSubmitted: (String value) async {
+                var foodName = value;
+               },
+            ),
+          ),
+          Container (
+            child: TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Description',
+              ),
+              onSubmitted: (String value) async {
+                description = value;
+              },
+            ),
+          ),
+          Container(
+              child: (
+                  FlatButton(
+                    color: Colors.orangeAccent,
+                    textColor: Colors.white,
+                    disabledColor: Colors.grey,
+                    disabledTextColor: Colors.black,
+                    padding: EdgeInsets.all(8.0),
+                    splashColor: Colors.blueAccent,
+                    onPressed: () {
+                      print (description);
+                    },
+                    child: Text(
+                      "Add Post",
+                      style: TextStyle(fontSize: 20.0),
+                    ),
+                  )
+              )
           ),
       ])
     );

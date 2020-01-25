@@ -3,6 +3,7 @@ import 'Meetup.dart';
 import 'PlaceholderWidget.dart';
 
 import 'package:Bread_and_Barter/Profile.dart';
+import 'package:Bread_and_Barter/Meetup.dart';
 
 
 class Home extends StatefulWidget {
@@ -22,6 +23,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text('Bread and Barter'),
       ),
