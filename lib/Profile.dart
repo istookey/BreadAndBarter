@@ -6,6 +6,8 @@ import 'package:http/http.dart' as http;
 
 import 'globals.dart' as globals;
 
+var UID = "";
+
 class Profile extends StatefulWidget {
 
   @override
