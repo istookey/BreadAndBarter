@@ -26,6 +26,25 @@ class ProfileState extends State<Profile> {
               style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),
             ),
           ),
+          Container(
+            child: (
+                FlatButton(
+                  color: Colors.orangeAccent,
+                  textColor: Colors.white,
+                  disabledColor: Colors.grey,
+                  disabledTextColor: Colors.black,
+                  padding: EdgeInsets.all(8.0),
+                  splashColor: Colors.blueAccent,
+                  onPressed: () {
+                    /*...*/
+                  },
+                  child: Text(
+                    "Log Out",
+                    style: TextStyle(fontSize: 20.0),
+                  ),
+                )
+    )
+          ),
       ])
     );
   }
