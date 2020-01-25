@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'globals.dart' as globals;
 
 var UID = "";
+var description = "";
 
 class Profile extends StatefulWidget {
 
@@ -110,23 +111,6 @@ class ProfileState extends State<Profile> {
             ),
              onSubmitted: (String value) async {
                var imageUrl = value;
-             await showDialog<void>(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    title: const Text('Thanks!'),
-                    content: Text('You typed "$value".'),
-                    actions: <Widget>[
-                      FlatButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Text('OK'),
-                      ),
-                    ],
-                  );
-                },
-              );
             },
           ),
     ),
@@ -138,24 +122,7 @@ class ProfileState extends State<Profile> {
               ),
               onSubmitted: (String value) async {
                 var foodName = value;
-                await showDialog<void>(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: const Text('Thanks!'),
-                      content: Text('You typed "$value".'),
-                      actions: <Widget>[
-                        FlatButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: const Text('OK'),
-                        ),
-                      ],
-                    );
-                  },
-                );
-              },
+               },
             ),
           ),
           Container (
@@ -165,24 +132,7 @@ class ProfileState extends State<Profile> {
                 labelText: 'Description',
               ),
               onSubmitted: (String value) async {
-                var description = value;
-                await showDialog<void>(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: const Text('Thanks!'),
-                      content: Text('You typed "$value".'),
-                      actions: <Widget>[
-                        FlatButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: const Text('OK'),
-                        ),
-                      ],
-                    );
-                  },
-                );
+                description = value;
               },
             ),
           ),
@@ -195,7 +145,9 @@ class ProfileState extends State<Profile> {
                     disabledTextColor: Colors.black,
                     padding: EdgeInsets.all(8.0),
                     splashColor: Colors.blueAccent,
-                    onPressed: () {},
+                    onPressed: () {
+                      print (description);
+                    },
                     child: Text(
                       "Add Post",
                       style: TextStyle(fontSize: 20.0),
