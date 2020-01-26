@@ -62,22 +62,7 @@ class ProfileState extends State<Profile> {
       constraints: const BoxConstraints.expand(),
       child: Column(
         children: <Widget>[
-        Container(
-        child: new Text(
-          firstName,
-          textAlign: TextAlign.center,
-          overflow: TextOverflow.ellipsis,
-          style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),
-        ),
-      ),
-          Container(
-            child: new Text(
-              lastName,
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),
-            ),
-          ),
+
           Container(
             child: new Text(
               UID,
