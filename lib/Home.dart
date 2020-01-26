@@ -7,7 +7,6 @@ import 'package:Bread_and_Barter/Foodlist.dart';
 
 import 'package:Bread_and_Barter/LoginPage.dart';
 
-
 class Home extends StatefulWidget {
 //  var UID = "";
 //
@@ -29,14 +28,13 @@ class _HomeState extends State<Home> {
 //  }
 
   int _currentIndex = 0;
-  final List<Widget>_children = [
+  final List<Widget> _children = [
     Meetup(), //Meet up
     FoodList(), //Food nearby
     Profile(UID), //Profile
   ];
   @override
   Widget build(BuildContext context) {
-
     final ScreenArguments args = ModalRoute.of(context).settings.arguments;
     UID = args.UID;
 
@@ -46,6 +44,7 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         leading: Container(),
         title: Text('Bread and Barter'),
+        backgroundColor: Colors.orangeAccent,
       ),
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
