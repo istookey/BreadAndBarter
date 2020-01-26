@@ -31,6 +31,20 @@ class ProfileState extends State<Profile> {
   }
 
   var client = http.Client();
+
+  Future<Null> postNew() async {
+    var url = "https://bread-and-barter.firebaseio.com/Global/posts.json";
+
+    try {
+      var response = await client.post(url, body: {});
+
+      await new Future.delayed(Duration(milliseconds: 20));
+    } catch (error) {
+
+    }
+  }
+
+
   Future<Null> getUserData(var UID) async {
     var url = "https://bread-and-barter.firebaseio.com/Users/${this.UID}.json";
     try{
