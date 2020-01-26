@@ -1,3 +1,4 @@
+import 'package:Bread_and_Barter/LogoPage.dart';
 import 'package:flutter/material.dart';
 import 'Home.dart';
 
@@ -17,7 +18,7 @@ class MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Bread and Barter',
-      home: Home(),
+      home: LogoPage(),
     );
   }
 }
