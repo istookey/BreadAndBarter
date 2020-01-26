@@ -23,15 +23,15 @@ class Profile extends StatefulWidget {
 class ProfileState extends State<Profile> {
   var firstName = "";
   var lastName = "";
-  var UID;
   var description = "";
   var imageURL = "";
   var foodName = "";
+  static var UID;
 
   var refreshCounter = 0;
 
-  ProfileState(String UID) {
-    this.UID = UID;
+  ProfileState(String userID) {
+    UID = userID;
   }
 
   var client = http.Client();
@@ -72,7 +72,7 @@ class ProfileState extends State<Profile> {
   }
 
   Future<Null> getUserData(var UID) async {
-    var url = "https://bread-and-barter.firebaseio.com/Users/${this.UID}.json";
+    var url = "https://bread-and-barter.firebaseio.com/Users/${UID}.json";
     try {
       var response = await client.get(url);
 
