@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'Meetup.dart';
 import 'PlaceholderWidget.dart';
 
 import 'package:Bread_and_Barter/Profile.dart';
