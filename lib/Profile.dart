@@ -4,29 +4,39 @@ import 'dart:core';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import 'package:Bread_and_Barter/LoginPage.dart';
+
 import 'globals.dart' as globals;
 
-var UID = "";
-var description = "";
-
 class Profile extends StatefulWidget {
+  var UID;
+
+  Profile(String UID) {
+    this.UID = UID;
+  }
 
   @override
-  State createState() => ProfileState();
+  State createState() => ProfileState(this.UID);
 }
+
 class ProfileState extends State<Profile> {
   var firstName = "";
   var lastName = "";
-  var UID = "";
+  var UID;
+  var description = "";
   var refreshCounter = 0;
+
+  ProfileState(String UID) {
+    this.UID = UID;
+  }
 
   var client = http.Client();
   Future<Null> getUserData(var UID) async {
-    var url = "https://bread-and-barter.firebaseio.com/Users/$UID.json";
+    var url = "https://bread-and-barter.firebaseio.com/Users/${this.UID}.json";
     try{
       var response = await client.get(url);
 
-      await new Future.delayed(Duration(milliseconds: 20));
+      await new Future.delayed(Duration(milliseconds: 40));
 
       this.UID = UID;
 
@@ -55,92 +65,95 @@ class ProfileState extends State<Profile> {
     if (refreshCounter == 1) {
       refreshCounter = 0;
     } else {
-      getUserData("UID");
+      getUserData(UID);
       refreshCounter += 1;
     }
     return ConstrainedBox(
-      constraints: const BoxConstraints.expand(),
-      child: Column(
-        children: <Widget>[
-
-          Container(
-            child: new Text(
-              UID,
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),
-            ),
-          ),
-          Container(
-            child: (
-                FlatButton(
-                  color: Colors.orangeAccent,
-                  textColor: Colors.white,
-                  disabledColor: Colors.grey,
-                  disabledTextColor: Colors.black,
-                  padding: EdgeInsets.all(8.0),
-                  splashColor: Colors.blueAccent,
-                  onPressed: () {},
-                  child: Text(
-                    "Log Out",
-                    style: TextStyle(fontSize: 20.0),
-                  ),
-                )
-    )
-          ),
-          Container (
-          child: TextField(
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Image URL',
-            ),
-             onSubmitted: (String value) async {
-               var imageUrl = value;
-            },
-          ),
-    ),
-          Container (
-            child: TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Food Name',
+        constraints: const BoxConstraints.expand(),
+        child: ListView(
+            children: <Widget>[
+              Column(
+            children: <Widget>[
+              Container(
+                child: new Text(
+                  UID,
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),
+                ),
               ),
-              onSubmitted: (String value) async {
-                var foodName = value;
-               },
-            ),
-          ),
-          Container (
-            child: TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Description',
-              ),
-              onSubmitted: (String value) async {
-                description = value;
-              },
-            ),
-          ),
-          Container(
-              child: (
-                  FlatButton(
-                    color: Colors.orangeAccent,
-                    textColor: Colors.white,
-                    disabledColor: Colors.grey,
-                    disabledTextColor: Colors.black,
-                    padding: EdgeInsets.all(8.0),
-                    splashColor: Colors.blueAccent,
-                    onPressed: () {
-                      print (description);
-                    },
-                    child: Text(
-                      "Add Post",
-                      style: TextStyle(fontSize: 20.0),
-                    ),
+              Container(
+                  child: (
+                      FlatButton(
+                        color: Colors.orangeAccent,
+                        textColor: Colors.white,
+                        disabledColor: Colors.grey,
+                        disabledTextColor: Colors.black,
+                        padding: EdgeInsets.all(8.0),
+                        splashColor: Colors.blueAccent,
+                        onPressed: () {},
+                        child: Text(
+                          "Log Out",
+                          style: TextStyle(fontSize: 20.0),
+                        ),
+                      )
                   )
-              )
-          ),
-      ])
+              ),
+              Container (
+                child: TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Image URL',
+                  ),
+                  onSubmitted: (String value) async {
+                    var imageUrl = value;
+                  },
+                ),
+              ),
+              Container (
+                child: TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Food Name',
+                  ),
+                  onSubmitted: (String value) async {
+                    var foodName = value;
+                  },
+                ),
+              ),
+              Container (
+                child: TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Description',
+                  ),
+                  onSubmitted: (String value) async {
+                    description = value;
+                  },
+                ),
+              ),
+              Container(
+                  child: (
+                      FlatButton(
+                        color: Colors.orangeAccent,
+                        textColor: Colors.white,
+                        disabledColor: Colors.grey,
+                        disabledTextColor: Colors.black,
+                        padding: EdgeInsets.all(8.0),
+                        splashColor: Colors.blueAccent,
+                        onPressed: () {
+                          print (description);
+                        },
+                        child: Text(
+                          "Add Post",
+                          style: TextStyle(fontSize: 20.0),
+                        ),
+                      )
+                  )
+              ),
+            ])
+          ]
+        )
     );
   }
 }
