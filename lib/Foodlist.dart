@@ -10,14 +10,16 @@ class FoodList extends StatefulWidget {
 }
 
 class FoodListState extends State<FoodList> {
+  List<String> lDescriptions = [];
+  List<String> lFoodName = [];
+  List<String> lImageURL = [];
+  List<String> lUID = [];
+
+  var _refreshCount = 0;
+
+
   Widget build(BuildContext context) {
     //final file = new File("test.txt");
-
-    List<String> lDescriptions = [];
-    List<String> lFoodName = [];
-    List<String> lImageURL = [];
-    List<String> lUID = [];
-
 
     Future<Null> getGlobalData() async {
       var client = http.Client();
@@ -30,8 +32,8 @@ class FoodListState extends State<FoodList> {
         if (response.statusCode == 200) {
           var jsonResponse = convert.jsonDecode(response.body);
 
-          jsonResponse.forEach((k, v) => {
-            v.forEach((k, v) => {
+          jsonResponse.forEach((k, v) {
+            v.forEach((k, v) {
               if (k == "description") {
                 lDescriptions.add(v);
               } else if (k == "foodName") {
@@ -41,27 +43,45 @@ class FoodListState extends State<FoodList> {
               } else if (k == "uid") {
                 lUID.add(v);
               }
-            })
+            });
           });
         }
+        print(lDescriptions);
 
         setState(() {});
-
+        return response;
       } catch (error) {
 
       }
     }
 
-    Future<void> refresh() {
-      print('refreshed');
+    Future<void> refresh() async {
+      lDescriptions = [];
+      lFoodName = [];
+      lImageURL = [];
+      lUID = [];
+
+      await getGlobalData();
     }
 
-    return RefreshIndicator(
+    if (_refreshCount == 0) {
+      refresh();
+      _refreshCount += 1;
+    } else {
+      _refreshCount = 0;
+    }
+    return ConstrainedBox(
+        constraints: BoxConstraints.expand(),
+        child: RefreshIndicator(
       onRefresh: () => refresh(),
-      child: ListView(
-        children: <Widget>[
-          Container(
-            width: MediaQuery.of(context).size.width,
+      child: ListView.builder(
+        itemCount: lDescriptions.length,
+        itemBuilder: (context, index) {
+          return new Container(
+            width: MediaQuery
+                .of(context)
+                .size
+                .width,
             child: Card(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0)),
@@ -70,23 +90,24 @@ class FoodListState extends State<FoodList> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    const ListTile(
+                    ListTile(
                       leading: CircleAvatar(
                         backgroundImage:
-                            NetworkImage("https://i.imgur.com/r7rQBCS.jpg"),
+                        NetworkImage(lImageURL[index]),
                         maxRadius: 30,
                       ),
-                      title: Text('Heart Shaker - tmmay',
+                      title: Text(lFoodName[index] + " - " + lUID[index],
                           style: TextStyle(color: Colors.white, fontSize: 15)),
                       subtitle: Text(
-                          'This is a test todkfja;s;lksdjfg;lksdjfg;lkjsdf;lgkjs;dflgkj;sldfkgj;lk sl;kdfjg ;ldkfgj ;lldkfj',
+                          lDescriptions[index],
                           style: TextStyle(color: Colors.white, fontSize: 13)),
                     )
                   ],
                 )),
-          ),
-        ],
+          );
+        }
       ),
+    ),
     );
   }
 }
