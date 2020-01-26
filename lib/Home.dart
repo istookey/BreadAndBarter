@@ -44,6 +44,7 @@ class _HomeState extends State<Home> {
 
     return Scaffold(
       appBar: AppBar(
+        leading: Container(),
         title: Text('Bread and Barter'),
       ),
       body: _children[_currentIndex],

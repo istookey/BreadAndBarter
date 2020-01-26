@@ -38,15 +38,15 @@ class ProfileState extends State<Profile> {
 
       await new Future.delayed(Duration(milliseconds: 40));
 
-      this.UID = UID;
+      //this.UID = UID;
 
       if (response.statusCode == 200) {
         var jsonResponse = convert.jsonDecode(response.body);
 
-        print(jsonResponse);
+        //print(jsonResponse);
 
         jsonResponse.forEach((k,v) {
-          if (k== "First_Name"){
+          if (k == "First_Name"){
             firstName = v;
           }
           else if (k == "Last_Name"){
@@ -62,6 +62,7 @@ class ProfileState extends State<Profile> {
   }
 
   Widget build(BuildContext context){
+    setState(() {});
     if (refreshCounter == 1) {
       refreshCounter = 0;
     } else {
@@ -91,7 +92,9 @@ class ProfileState extends State<Profile> {
                         disabledTextColor: Colors.black,
                         padding: EdgeInsets.all(8.0),
                         splashColor: Colors.blueAccent,
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
                         child: Text(
                           "Log Out",
                           style: TextStyle(fontSize: 20.0),
@@ -127,6 +130,9 @@ class ProfileState extends State<Profile> {
                     border: OutlineInputBorder(),
                     labelText: 'Description',
                   ),
+                  onChanged: (String value) async {
+                    description = value;
+                  },
                   onSubmitted: (String value) async {
                     description = value;
                   },
